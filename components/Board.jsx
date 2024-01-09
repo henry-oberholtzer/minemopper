@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import BoardTile from './Board-Tile';
+import BoardTile from './BoardTile';
 import { useState } from 'react';
 
 const Board = ({ game }) => {
