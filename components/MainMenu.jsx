@@ -1,18 +1,27 @@
 import { useState } from 'react';
-import { View, StyleSheet, Text, Image, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, Image, Modal } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from './Button';
 
 
 const MainMenu = () => {
-    const [view, setView] = useState(0);
+    const [view, setView] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
     const pregame = () => {
-        setView(1);
+        setView(true);
+    };
+
+    const modalOn = () => {
+        setModalVisible(true);
+    };
+
+    const modalOff = () => {
+        setModalVisible(false);
     };
 
     const exit = () => {
-        setView(0);
+        setView(false);
     };
 
     let currentView;
@@ -32,8 +41,16 @@ const MainMenu = () => {
         currentView = (
             <View style={styles.buttonContainer}>
                 <Button label="Back" func={exit} theme="back-button" />
-                <Button label="Difficulty" />
+                <Button label="Difficulty" func={modalOn} />
                 <Button label="Oops mode?" />
+                <Modal visible={modalVisible}
+                    onRequestClose={() => setModalVisible(false)}
+                    animationType="slide">
+                    <Button label="Easy" />
+                    <Button label="Medium" />
+                    <Button label="Hard" />
+                    <Button label="Back" func={modalOff} theme="back-button" />
+                </Modal>
             </View>
         );
     }
@@ -58,7 +75,7 @@ const TitleImage = require('../assets/images/minemopper.png')
 
 const styles = StyleSheet.create({
     headerStyle: {
-        height: 50,
+        height: 40,
         width: "100%",
         backgroundColor: '#E39600',
         position: "absolute",
@@ -69,7 +86,7 @@ const styles = StyleSheet.create({
         height: 68,
         margin: 20,
         position: 'absolute',
-        top: 200,
+        top: 165,
         padding: 3,
     },
     footerStyle: {
@@ -83,7 +100,7 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         position: 'absolute',
-        top: 50,
+        top: 40,
         alignItems: "center",
         marginBottom: 20
     },
