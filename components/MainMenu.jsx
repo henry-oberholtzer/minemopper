@@ -1,27 +1,11 @@
 import { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image, Dimensions } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Button from './Button';
+
 
 const MainMenu = () => {
-    const [view, setView] = useState < number > (0);
-
-    const styles = StyleSheet.create({
-        buttonStyles: {
-            backgroundColor: '#9AE19D',
-            color: 'white',
-            textAlign: 'center',
-            padding: 10,
-            margin: 10,
-        },
-        headerStyle: {
-            height: 50,
-            width: '100%',
-            backgroundColor: '#E39600',
-        },
-        footerStyle: {
-            backgroundColor: '#474A48',
-            height: 50,
-        },
-    });
+    const [view, setView] = useState(0);
 
     const pregame = () => {
         setView(1);
@@ -37,34 +21,18 @@ const MainMenu = () => {
         currentView = (
             <>
                 <View>
-                    <TouchableOpacity
-                        style={styles.buttonStyles}
-                        onPress={() => pregame()}>
-                        Start game
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonStyles}>
-                        Resume game
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonStyles}>
-                        View leaderboard
-                    </TouchableOpacity>
+                    <Button label="Start Game" func={pregame} />
+                    <Button label="Resume Game" />
+                    <Button label="View Leaderboard" />
                 </View>
             </>
         );
     } else {
         currentView = (
             <View>
-                <TouchableOpacity
-                    style={styles.buttonStyles}
-                    onPress={() => exit()}>
-                    Back
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonStyles}>
-                    Difficulty
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonStyles}>
-                    Oops mode?
-                </TouchableOpacity>
+                <Button label="Back" func={exit} theme="back-button" />
+                <Button label="Difficulty" />
+                <Button label="Oops mode?" />
             </View>
         );
     }
@@ -73,7 +41,7 @@ const MainMenu = () => {
         <>
             <View style={styles.headerStyle}></View>
             <View>
-                <Text>An image goes hear!</Text>
+                <Image style={styles.image} source={TitleImage} />
             </View>
             {currentView}
             <View style={styles.footerStyle}>
@@ -84,5 +52,30 @@ const MainMenu = () => {
         </>
     );
 };
+
+const TitleImage = require('../assets/images/minemopper.png')
+
+const styles = StyleSheet.create({
+    headerStyle: {
+        height: 50,
+        width: "100%",
+        backgroundColor: '#E39600',
+        position: "absolute",
+        top: 0
+    },
+    footerStyle: {
+        backgroundColor: '#474A48',
+        height: 50,
+        width: "100%",
+        padding: 5,
+        alignItems: "center",
+        position: "absolute",
+        bottom: 0
+    },
+    image: {
+        width: wp('90%'),
+        height: hp('40%'),
+    }
+});
 
 export default MainMenu;
