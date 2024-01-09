@@ -24,6 +24,7 @@ const MainMenu = () => {
                     <Button label="Start Game" func={pregame} />
                     <Button label="Resume Game" />
                     <Button label="View Leaderboard" />
+                    <Button label="Sign out" />
                 </View>
             </>
         );
