@@ -1,19 +1,10 @@
 import { StyleSheet, View } from 'react-native';
 import BoardTile from './Board-Tile';
-import { boardGraphics } from './board-graphics';
-
-const setAllToType = (board) => {
-	return (originLocation) => {
-		const [x, y] = originLocation;
-		const type = board[y - 1][x - 1];
-		document.getElementById([x - 1, y - 1]).querySelector('img').src =
-			boardGraphics[type];
-	};
-};
+import { useState } from 'react';
 
 const Board = ({ game }) => {
 	const { board } = game;
-	const detonationFunction = setAllToType(board);
+	const [detonate, setDetonate] = useState(false);
 	return (
 		<View style={styles.board}>
 			{board.map((row, y) => {
@@ -25,7 +16,8 @@ const Board = ({ game }) => {
 						{row.map((tile, x) => {
 							return (
 								<BoardTile
-									detonationFunction={detonationFunction}
+									detonate={detonate}
+									setDetonate={setDetonate}
 									type={tile}
 									location={[x, y]}
 									key={x}
