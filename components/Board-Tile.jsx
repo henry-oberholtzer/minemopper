@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Pressable, Image } from 'react-native';
-import { boardGraphics } from './board-graphics';
+import { boardGraphics } from '../board-graphics';
 import { useState } from 'react';
 
 const handleOnPress = (type) => {
