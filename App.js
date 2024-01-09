@@ -13,7 +13,7 @@ export default function App() {
 		<View style={styles.container}>
 			<StartPopUp />
 			<MainMenu />
-			<LeaderBoard />
+			{/* <LeaderBoard /> Keeping this comment out until scores is defined*/}
 			<StatusBar style="auto" />
 		</View>
 	);
