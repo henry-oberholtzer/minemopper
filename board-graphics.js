@@ -13,6 +13,6 @@ export const boardGraphics = {
 };
 export const overlayGraphics = {
 	0: require('./assets/graphics/overlay/o_tile.svg'),
-	0: require('./assets/graphics/overlay/o_flag.svg'),
-	0: require('./assets/graphics/overlay/o_flag_false.svg'),
+	1: require('./assets/graphics/overlay/o_flag.svg'),
+	2: require('./assets/graphics/overlay/o_flag_false.svg'),
 };

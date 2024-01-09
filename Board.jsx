@@ -1,24 +1,27 @@
 import { StyleSheet, View } from 'react-native';
 import BoardTile from './Board-Tile';
 
-const Board = ({ boardArray }) => {
+const Board = ({ game }) => {
+	const { board } = game;
 	return (
 		<View style={styles.board}>
-			{boardArray.map((row) => {
-				return Row(row);
+			{board.map((row, i) => {
+				return Row(row, i);
 			})}
 		</View>
 	);
 };
 
-const Row = (row) => {
+const Row = (row, i) => {
 	return (
-		<View style={styles.row}>
-			{row.map((tile) => {
+		<View
+			key={i}
+			style={styles.row}>
+			{row.map((tile, a) => {
 				return (
 					<BoardTile
 						type={tile}
-						key={tile}
+						key={[a, i]}
 					/>
 				);
 			})}
