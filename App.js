@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Board from './Board';
 import newGame from './game_logic/board-creator';
 
-const game = newGame(8, 8, 12);
+const game = newGame(8, 8, 8);
 
 export default function App() {
 	return (

@@ -1,29 +1,41 @@
 import React from 'react';
-import { StyleSheet, View, Pressable, Text, Image } from 'react-native';
+import { StyleSheet, Pressable, Image } from 'react-native';
 import { boardGraphics } from './board-graphics';
-import { overlayGraphics } from './board-graphics';
 import { useState } from 'react';
 
-const BoardTile = ({ type }) => {
-	const [displayState, setDisplayState] = useState('tile');
-
-	const views = {
-		tile: overlayGraphics[0],
-		flag: overlayGraphics[1],
-		self: boardGraphics[type],
+const handleOnPress = (type) => {
+	return (location) => {
+		return (detonationFunction) => {
+			return (setDisplayState) => {
+				if (type === 10) {
+					setDisplayState(9);
+					detonationFunction(location);
+					console.log('game is over and the board should now be revealed');
+				} else if (type === 0) {
+					setDisplayState(0);
+					console.log('reveal neighboring squares');
+				} else {
+					setDisplayState(type);
+				}
+			};
+		};
 	};
+};
 
+const BoardTile = ({ type, location, detonationFunction }) => {
+	const [displayState, setDisplayState] = useState(11);
 	return (
 		<Pressable
+			id={location}
 			key={type}
-			value={type}
 			style={styles.boardTileTrigger}
-			onPress={() => {
-				setDisplayState('self');
-			}}
-			onLongPress={() => setDisplayState('flag')}>
+			onPress={() =>
+				handleOnPress(type)(location)(detonationFunction)(setDisplayState)
+			}
+			onLongPress={() => console.log('I will set a flag')}>
 			<Image
-				source={views[displayState]}
+				id={location + 'img'}
+				source={boardGraphics[displayState]}
 				style={styles.image}
 			/>
 		</Pressable>

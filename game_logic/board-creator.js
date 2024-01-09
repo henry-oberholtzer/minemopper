@@ -73,7 +73,6 @@ const boardGenerator = (xLength, yLength, numberOfMines) => {
 const newGame = (xLength, yLength, numberOfMines) => ({
 	board: boardGenerator(xLength, yLength, numberOfMines),
 	mines: numberOfMines,
-	overlayState: boardGenerator(xLength, yLength, 0),
 });
 
 export default newGame;
