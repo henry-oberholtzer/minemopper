@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="31.999998"
+   height="31.999994"
+   viewBox="0 0 8.4666652 8.4666642"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer1"
+     transform="translate(-50.790289,-8.4666681)"><g
+       id="g31"
+       transform="translate(42.323625)"><rect
+         style="fill:#807d84;fill-opacity:1;fill-rule:evenodd;stroke-width:2.11667;stroke-linecap:round;paint-order:stroke fill markers"
+         id="rect30"
+         width="8.4666662"
+         height="8.4666662"
+         x="1.299233e-08"
+         y="8.4666672" /><rect
+         style="display:inline;fill:#bfbfbf;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.11667;stroke-linecap:round;paint-order:stroke fill markers"
+         id="rect31"
+         width="7.9374995"
+         height="7.9374995"
+         x="0.26458332"
+         y="8.7312498" /><path
+         id="path32"
+         style="display:inline;fill:#333366;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 43.891486,9.2604174 v 6.6145836 l 5.321011,-2e-6 v -3.96875 l -3.998094,2e-6 v -1.322917 l 3.998094,-2e-6 V 9.2604162 Z m 1.352262,3.9687496 2.645833,-1e-6 v 1.322916 l -2.645833,10e-7 z"
+         transform="translate(-42.323625)" /></g><g
+       id="g35"
+       transform="translate(50.790289)"
+       style="display:inline"><rect
+         style="fill:#807d84;fill-opacity:1;fill-rule:evenodd;stroke-width:2.11667;stroke-linecap:round;paint-order:stroke fill markers"
+         id="rect33"
+         width="8.4666662"
+         height="8.4666662"
+         x="1.299233e-08"
+         y="8.4666672" /><rect
+         style="display:inline;fill:#bfbfbf;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.11667;stroke-linecap:round;paint-order:stroke fill markers"
+         id="rect34"
+         width="7.9374995"
+         height="7.9374995"
+         x="0.26458332"
+         y="8.7312498" /><path
+         style="fill:#333366;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 1.5972083,9.2604162 v 1.2982778 l 3.9687497,0.02464 V 15.875 H 6.8888747 V 9.2604142 Z"
+         id="path36" /></g></g></svg>
