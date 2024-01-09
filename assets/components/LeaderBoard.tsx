@@ -6,7 +6,7 @@ type LeaderBoardProps = {
 };
 
 const LeaderBoard: React.FC<LeaderBoardProps> = ({ scores }) => {
-	const sortedScored = scores
+	const sortedScores = scores
 		.sort((a, b) => b.score - a.score)
 		.slice(0, 10);
 	
