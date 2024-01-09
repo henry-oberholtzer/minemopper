@@ -20,7 +20,7 @@ const MainMenu = () => {
     if (!view) {
         currentView = (
             <>
-                <View>
+                <View style={styles.buttonContainer}>
                     <Button label="Start Game" func={pregame} />
                     <Button label="Resume Game" />
                     <Button label="View Leaderboard" />
@@ -29,7 +29,7 @@ const MainMenu = () => {
         );
     } else {
         currentView = (
-            <View>
+            <View style={styles.buttonContainer}>
                 <Button label="Back" func={exit} theme="back-button" />
                 <Button label="Difficulty" />
                 <Button label="Oops mode?" />
@@ -40,7 +40,7 @@ const MainMenu = () => {
     return (
         <>
             <View style={styles.headerStyle}></View>
-            <View>
+            <View style={styles.imageContainer}>
                 <Image style={styles.image} source={TitleImage} />
             </View>
             {currentView}
@@ -63,6 +63,14 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 0
     },
+    buttonContainer: {
+        width: 320,
+        height: 68,
+        margin: 20,
+        position: 'absolute',
+        top: 200,
+        padding: 3,
+    },
     footerStyle: {
         backgroundColor: '#474A48',
         height: 50,
@@ -72,9 +80,15 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0
     },
+    imageContainer: {
+        position: 'absolute',
+        top: 50,
+        alignItems: "center",
+        marginBottom: 20
+    },
     image: {
-        width: wp('90%'),
-        height: hp('40%'),
+        width: wp('100%'),
+        height: hp('30%'),
     }
 });
 
