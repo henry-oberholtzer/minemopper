@@ -5,7 +5,7 @@ const MainMenu: React.FC = () => {
 	return (
 		<View style={styles.container}>
 			<Image
-				source={require('./../../assets/mm.png')}
+				source={require('./../mm.png')}
 				style={styles.image}
 			/>
 
