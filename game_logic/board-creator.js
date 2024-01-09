@@ -71,5 +71,3 @@ const boardGenerator = (xLength, yLength, numberOfMines) => {
 };
 
 export default boardGenerator;
-
-console.log(boardGenerator(8, 8, 62));
