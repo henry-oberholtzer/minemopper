@@ -4,14 +4,14 @@ import StartPopUp from './components/StartPopUp';
 import LeaderBoard from './components/LeaderBoard';
 import MainMenu from './components/MainMenu';
 import Board from './components/Board';
-import newGame from './game_logic/board-creator';
 
-const game = newGame(8, 8, 8);
+
 
 export default function App() {
 	return (
 		<View style={styles.container}>
-			<MainMenu />
+			{/* <MainMenu /> */}
+			<Board />
 			<StatusBar style="auto" />
 		</View>
 	);
