@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Pressable } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import { useState } from 'react';
 import { boardGraphics } from '../board-graphics';
 import { Image } from 'react-native';
@@ -113,6 +113,9 @@ const Board = ({ route }) => {
 
 	return (
 		<View style={styles.board}>
+			<Text>
+				Mines remaining {mines}
+			</Text>
 			{renderBoard(rendered)(board)}
 		</View>
 	);
