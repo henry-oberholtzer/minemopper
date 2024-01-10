@@ -29,7 +29,11 @@ const BoardTile = ({ type, location, setDetonate, detonate }) => {
 			key={type}
 			style={styles.boardTileTrigger}
 			onPress={() => handleOnPress(type)(setDetonate)(setDisplayState)}
-			onLongPress={() => console.log('I will set a flag')}>
+			onLongPress={() => { if(displayState === 9) {
+				setDisplayState(11)
+			} else {
+				setDisplayState(9)
+			}}}>
 			<Image
 				id={location + 'img'}
 				source={detonate ? boardGraphics[type] : boardGraphics[displayState]}
@@ -41,8 +45,8 @@ const BoardTile = ({ type, location, setDetonate, detonate }) => {
 
 const styles = StyleSheet.create({
 	image: {
-		width: 32,
-		height: 32,
+		maxWidth: 32,
+		maxHeight: 32,
 		flex: 1,
 	},
 });
