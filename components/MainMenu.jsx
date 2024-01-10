@@ -42,7 +42,7 @@ const MainMenu = ({ navigation }) => {
                     <Modal visible={modalVisible}
                         onRequestClose={() => setModalVisible(false)}
                         animationType="slide"
-                        style={styles.container}>
+                        style={styles.modalStyle}>
                         <View style={styles.headerStyle}></View>
                         <View style={styles.buttonContainer}>
                             <Button label="Easy" func={() => play(8, 8, 8)} />
@@ -112,6 +112,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: '#C0C0C0',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalStyle: {
         backgroundColor: '#C0C0C0',
         alignItems: 'center',
         justifyContent: 'center',
