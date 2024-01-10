@@ -28,10 +28,6 @@ const MainMenu = ({ navigation }) => {
         navigation.navigate('Board', { row: x, column: y, bombsNum: bombs });
     }
 
-    const goToLeaderboard = () => {
-
-    }
-
     const play = (x, y, bombs) => {
         goToBoard(x, y, bombs);
         modalOff();
