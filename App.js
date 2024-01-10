@@ -7,23 +7,22 @@ import Board from './components/Board';
 import newGame from './game_logic/board-creator';
 
 const game = newGame(8, 8, 8);
+import MainMenu from './components/MainMenu';
 
 export default function App() {
-	return (
-		<View style={styles.container}>
-			<StartPopUp />
-			<MainMenu />
-			{/* <LeaderBoard /> Keeping this comment out until scores is defined*/}
-			<StatusBar style="auto" />
-		</View>
-	);
+  return (
+    <View style={styles.container}>
+      <MainMenu />
+      <StatusBar style="auto" />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
+  container: {
+    flex: 1,
+    backgroundColor: '#C0C0C0',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
