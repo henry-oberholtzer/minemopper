@@ -17,7 +17,8 @@ export default function App() {
           title: 'MineMopper',
           headerStyle: {
             backgroundColor: '#E39600',
-          }
+          },
+          headerTitleAlign: 'center',
         }} />
         <Stack.Screen name="Board" component={Board} />
         {/* <StatusBar style="auto" /> */}
