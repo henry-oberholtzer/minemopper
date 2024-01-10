@@ -1,24 +1,16 @@
 import { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import LeaderBoard from './LeaderBoard';
 
 const MainMenu = () => {
 	const [view, setView] = useState(0);
 
 	const styles = StyleSheet.create({
-		mainBodyStyle: {
-			backgroundColor: '#C0C0C0',
-			width: '100%'
-		},
-		mainButtonStyle: {
+		buttonStyles: {
 			backgroundColor: '#9AE19D',
 			color: 'white',
 			textAlign: 'center',
 			padding: 10,
 			margin: 10,
-			width: '70%',
-			marginLeft: '15%',
-			marginRight: '15%',
 		},
 		headerStyle: {
 			height: 50,
@@ -27,118 +19,68 @@ const MainMenu = () => {
 		},
 		footerStyle: {
 			backgroundColor: '#474A48',
-			height: '10%',
-			width: '100%',
-			textAlign: 'center',
+			height: 50,
 		},
-		footerTextStyle: {
-			textAlign: 'center',
-			color: 'white'
-		},
-		footerButtonStyle: {
-			backgroundColor: '#9AE19D',
-			color: 'white',
-			textAlign: 'center',
-			padding: 10,
-			margin: 10,
-			width: '20%',
-			marginLeft: '40%',
-			marginRight: '40%',
-		},
-		textAlignCenter: {
-			textAlign: 'center'
-		}
 	});
 
-
-
-	const viewPregame = () => {
+	const pregame = () => {
 		setView(1);
 	};
-
-	const viewLeaderboard = () => {
-		setView(2);
-	}
 
 	const exit = () => {
 		setView(0);
 	};
 
-
-	
 	let currentView;
 
-	const footerCopyright = (
-		<View style={styles.footerStyle}>
-			<Text style={styles.footerTextStyle}>
-				Copyright Teddy, Henry, Aaron, Grant, and Chris. NO STEALING
-			</Text>
-		</View>
-	)
-
-	const footerBackButton = (
-		<View style={styles.footerStyle}>
-			<TouchableOpacity
-				style={styles.footerButtonStyle}
-				onPress={() => exit()}>
-				<Text>Back</Text>
-			</TouchableOpacity>
-		</View>
-	)
-
-	if (view === 1) {
+	if (!view) {
 		currentView = (
 			<>
-				<View style={styles.mainBodyStyle}>
-					<TouchableOpacity style={styles.mainButtonStyle}>
-						<Text>Difficulty</Text>
+				<View>
+					<TouchableOpacity
+						style={styles.buttonStyles}
+						onPress={() => pregame()}>
+						<Text>Start game</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.mainButtonStyle}>
-						<Text>Oops Mode?</Text>
+					<TouchableOpacity style={styles.buttonStyles}>
+						<Text>Resume game</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.buttonStyles}>
+						<Text>View leaderboard</Text>
 					</TouchableOpacity>
 				</View>
-				{footerBackButton}
-			</>
-		);
-	} else if (view === 2) {
-		currentView = (
-			<>
-				<LeaderBoard />
-				{footerBackButton}
 			</>
 		);
 	} else {
 		currentView = (
-			<>
-				<View>
-					<Text>An image goes hear!</Text>
-				</View>
-				<View style={styles.mainBodyStyle}>
-					<TouchableOpacity
-						style={styles.mainButtonStyle}
-						onPress={() => viewPregame()}>
-						<Text style={styles.textAlignCenter}>Start Game</Text>
-					</TouchableOpacity>
-					<TouchableOpacity 
-						style={styles.mainButtonStyle}
-						>
-						<Text style={styles.textAlignCenter}>Resume Game</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.mainButtonStyle}
-						onPress={() => viewLeaderboard()}>
-						<Text style={styles.textAlignCenter}>View Leaderboard</Text>
-					</TouchableOpacity>
-				</View>
-				{footerCopyright}
-			</>
+			<View>
+				<TouchableOpacity
+					style={styles.buttonStyles}
+					onPress={() => exit()}>
+					<Text>Back</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.buttonStyles}>
+					<Text>Difficulty</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.buttonStyles}>
+					<Text>Oops mode?</Text>
+				</TouchableOpacity>
+			</View>
 		);
 	}
 
 	return (
 		<>
 			<View style={styles.headerStyle}></View>
+			<View>
+				<Text>An image goes hear!</Text>
+			</View>
 			{currentView}
+			<View style={styles.footerStyle}>
+				<Text style={{ color: 'white' }}>
+					Copyright Teddy, Henry, Aaron, Grant, and Chris. NO STEALING
+				</Text>
+			</View>
 		</>
 	);
 };
