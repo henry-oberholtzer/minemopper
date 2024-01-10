@@ -1,8 +1,17 @@
 import { StyleSheet, View } from 'react-native';
 import BoardTile from './BoardTile';
 import { useState } from 'react';
+import newGame from '../game_logic/board-creator';
 
-const Board = ({ game }) => {
+const Board = ({ route }) => {
+
+	const { row, column, bombsNum } = route.params
+
+	const x = JSON.stringify(row);
+	const y = JSON.stringify(column);
+	const bombs = JSON.stringify(bombsNum)
+
+	const game = newGame(x, y, bombs);
 	const { board } = game;
 	const [detonate, setDetonate] = useState(false);
 	return (
