@@ -40,16 +40,19 @@ const MainMenu = () => {
     } else {
         currentView = (
             <View style={styles.buttonContainer}>
-                <Button label="Back" func={exit} theme="back-button" />
                 <Button label="Difficulty" func={modalOn} />
                 <Button label="Oops mode?" />
+                <Button label="Back" func={exit} theme="back-button" />
                 <Modal visible={modalVisible}
                     onRequestClose={() => setModalVisible(false)}
                     animationType="slide">
-                    <Button label="Easy" />
-                    <Button label="Medium" />
-                    <Button label="Hard" />
-                    <Button label="Back" func={modalOff} theme="back-button" />
+                    <View style={styles.headerStyle}></View>
+                    <View style={styles.buttonContainer}>
+                        <Button label="Easy" />
+                        <Button label="Medium" />
+                        <Button label="Hard" />
+                        <Button label="Back" func={modalOff} theme="back-button" />
+                    </View>
                 </Modal>
             </View>
         );
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
         height: 68,
         margin: 20,
         position: 'absolute',
-        top: 165,
+        top: 200,
         padding: 3,
     },
     footerStyle: {
