@@ -3,12 +3,14 @@ import { View, StyleSheet, Text, Image, Modal } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from './Button';
 import newGame from '../game_logic/board-creator';
+import LeaderBoard from './LeaderBoard';
 
 const game = newGame(8, 8, 8);
 
 
 const MainMenu = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [leaderboardVisible, setLeaderboardVisible] = useState(false);
 
     const modalOn = () => {
         setModalVisible(true);
@@ -37,7 +39,7 @@ const MainMenu = ({ navigation }) => {
                 <View style={styles.buttonContainer}>
                     <Button label="Start Game" func={() => modalOn()} />
                     <Button label="Resume Game" />
-                    <Button label="View Leaderboard" />
+                    <Button label="View Leaderboard" func={() => setLeaderboardVisible(true)}/>
                     <Button label="Sign out" />
                     <Modal visible={modalVisible}
                         onRequestClose={() => setModalVisible(false)}
@@ -50,6 +52,21 @@ const MainMenu = ({ navigation }) => {
                             <Button label="Hard" func={() => play(32, 32, 32)} />
                             <Button label="Back" func={() => modalOff()} theme="back-button" />
                         </View>
+                    </Modal>
+                    <Modal visible={leaderboardVisible}
+                        onRequestClose={() => setLeaderboardVisible(false)}
+                        animationType="slide"
+                        style={styles.container}>
+                        <View style={styles.headerStyle}></View>
+                        <View style={styles.leaderboardContainer}>
+                            <LeaderBoard />
+                            <Button label="Back" func={() => setLeaderboardVisible(false)} theme="back-button" />
+                        </View>
+                        <View style={styles.footerStyle}>
+                <Text style={{ color: 'white' }}>
+                    Copyright Teddy, Henry, Aaron, Grant, and Chris. NO STEALING
+                </Text>
+            </View>            
                     </Modal>
                 </View>
             </View>
@@ -89,6 +106,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 25,
         padding: 3,
+    },
+    leaderboardContainer: {
+        position: 'absolute',
+        top: 40,
+        width: '100%',
+        backgroundColor: '#C0C0C0',
+        bottom: 0,
     },
     footerStyle: {
         backgroundColor: '#474A48',
