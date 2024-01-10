@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { db } from '../src/auth/Firebase';
+import { db } from './auth/Firebase';
 import { collection, getDocs, query } from "firebase/firestore";
 
 
