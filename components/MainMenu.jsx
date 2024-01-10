@@ -8,12 +8,7 @@ const game = newGame(8, 8, 8);
 
 
 const MainMenu = ({ navigation }) => {
-    const [view, setView] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
-
-    const pregame = () => {
-        setView(true);
-    };
 
     const modalOn = () => {
         setModalVisible(true);
@@ -36,31 +31,18 @@ const MainMenu = ({ navigation }) => {
         modalOff();
     };
 
-    let currentView;
-
-    if (!view) {
-        currentView = (
-            <>
-                <View style={styles.container}>
-                    <View style={styles.buttonContainer}>
-                        <Button label="Start Game" func={() => pregame()} />
-                        <Button label="Resume Game" />
-                        <Button label="View Leaderboard" />
-                        <Button label="Sign out" />
-                    </View>
-                </View>
-            </>
-        );
-    } else {
-        currentView = (
+    let currentView = (
+        <>
             <View style={styles.container}>
                 <View style={styles.buttonContainer}>
-                    <Button label="Difficulty" func={() => modalOn()} />
-                    <Button label="Oops mode?" />
-                    <Button label="Back" func={() => exit()} theme="back-button" />
+                    <Button label="Start Game" func={() => modalOn()} />
+                    <Button label="Resume Game" />
+                    <Button label="View Leaderboard" />
+                    <Button label="Sign out" />
                     <Modal visible={modalVisible}
                         onRequestClose={() => setModalVisible(false)}
-                        animationType="slide">
+                        animationType="slide"
+                        style={styles.container}>
                         <View style={styles.headerStyle}></View>
                         <View style={styles.buttonContainer}>
                             <Button label="Easy" func={() => play(8, 8, 8)} />
@@ -71,15 +53,15 @@ const MainMenu = ({ navigation }) => {
                     </Modal>
                 </View>
             </View>
-        );
-    }
+        </>
+    )
 
     return (
         <>
             <View style={styles.headerStyle}></View>
-            <View style={styles.imageContainer}>
+            {/* <View style={styles.imageContainer}>
                 <Image style={styles.image} source={TitleImage} />
-            </View>
+            </View> */}
             {currentView}
             <View style={styles.footerStyle}>
                 <Text style={{ color: 'white' }}>
@@ -105,7 +87,7 @@ const styles = StyleSheet.create({
         height: 68,
         margin: 20,
         position: 'absolute',
-        top: 200,
+        top: 25,
         padding: 3,
     },
     footerStyle: {
@@ -129,6 +111,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        flexDirection: 'column',
         backgroundColor: '#C0C0C0',
         alignItems: 'center',
         justifyContent: 'center',
