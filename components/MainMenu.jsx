@@ -37,9 +37,9 @@ const MainMenu = ({ navigation }) => {
                         <View style={styles.modalStyle}>
                             <View style={styles.headerStyle}></View>
                             <View style={styles.buttonContainer}>
-                                <Button label="Easy" func={() => play(8, 8, 8)} />
-                                <Button label="Medium" func={() => play(16, 16, 16)} />
-                                <Button label="Hard" func={() => play(32, 32, 32)} />
+                                <Button label="Easy" func={() => play(10, 20, 40)} />
+                                <Button label="Medium" func={() => play(10, 20, 60)} />
+                                <Button label="Hard" func={() => play(10, 20, 80)} />
                                 <Button label="Back" func={() => modalOff()} theme="back-button" />
                             </View>
                         </View>
