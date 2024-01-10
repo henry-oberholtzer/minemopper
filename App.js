@@ -4,6 +4,7 @@ import StartPopUp from './components/StartPopUp';
 import LeaderBoard from './components/LeaderBoard';
 import MainMenu from './components/MainMenu';
 import Board from './components/Board';
+import LoginScreen from './components/LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -13,6 +14,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Main">
+        {/* <Stack.Screen name="LogIn" component={LoginScreen} options={{
+          title: 'MineMopper',
+          headerStyle: {
+            backgroundColor: '#E39600',
+          },
+          headerTitleAlign: 'center',
+        }} /> */}
         <Stack.Screen name="Main" component={MainMenu} options={{
           title: 'MineMopper',
           headerStyle: {
@@ -20,7 +28,13 @@ export default function App() {
           },
           headerTitleAlign: 'center',
         }} />
-        <Stack.Screen name="Board" component={Board} />
+        <Stack.Screen name="Board" component={Board} options={{
+          title: 'MineMopper',
+          headerStyle: {
+            backgroundColor: '#E39600',
+          },
+          headerTitleAlign: 'center',
+        }} />
         {/* <StatusBar style="auto" /> */}
       </Stack.Navigator>
     </NavigationContainer >
