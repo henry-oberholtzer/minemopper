@@ -2,11 +2,12 @@ import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity  } from 'react-native';
 import { auth } from './auth/Firebase'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigation = useNavigation();
 
@@ -26,17 +27,16 @@ const LoginScreen = () => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);
       })
-      .catch(error => alert(error.message))
+      .catch(error => setErrorMessage(error.message.split("Firebase: ")))
   }
 
   const handleLogin = () => {
-    auth
-      .signInWithEmailAndPassword(email, password)
+      signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Logged in with:', user.email);
       })
-      .catch(error => alert(error.message))
+      .catch(error => setErrorMessage(error.message.split("Firebase: ")))
   }
 
   return (
@@ -59,6 +59,8 @@ const LoginScreen = () => {
           secureTextEntry
         />
       </View>
+
+      <Text style={styles.errorMessageText}>{errorMessage}</Text>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#C0C0C0',
   },
   inputContainer: {
     width: '80%'
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#9AE19D',
     width: '100%',
     padding: 15,
     borderRadius: 10,
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#0782F9',
+    borderColor: '#9AE19D',
     borderWidth: 2,
   },
   buttonText: {
@@ -121,10 +124,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#0782F9',
+    color: '#9AE19D',
     fontWeight: '700',
     fontSize: 16,
   },
-})
-
-//
+  errorMessageText: {
+    color: '#BA2D0B',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+});
