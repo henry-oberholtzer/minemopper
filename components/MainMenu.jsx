@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { View, StyleSheet, Text, Image, Modal } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from './Button';
-import newGame from '../game_logic/board-creator';
 import LeaderBoard from './LeaderBoard';
 
 const MainMenu = ({ navigation }) => {
@@ -45,6 +44,16 @@ const MainMenu = ({ navigation }) => {
                                 <Button label="Hard" func={() => play(10, 20, 80)} />
                                 <Button label="Back" func={() => modalOff()} theme="back-button" />
                             </View>
+                        </View>
+                    </Modal>
+                    <Modal visible={leaderboardVisible}
+                        onRequestClose={() => setLeaderboardVisible(false)}
+                        animationType="slide"
+                        style={styles.container}>
+                        <View style={styles.headerStyle}></View>
+                        <View style={styles.leaderboardContainer}>
+                            <LeaderBoard />
+                            <Button label="Back" func={() => setLeaderboardVisible(false)} theme="back-button" />
                         </View>
                     </Modal>
                 </View>
