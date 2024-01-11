@@ -1,42 +1,58 @@
 import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 import { auth } from './auth/Firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      if(user) {
+      if (user) {
         navigation.replace('Main')
       }
-    })
-
-    return unsubscribe
+    });
+    return unsubscribe;
   }, [])
 
   const handleSignUp = () => {
+    setLoading(true);
+    setErrorMessage('');
     createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredentials => {
-        const user = userCredentials.user;
-        console.log('Registered with:', user.email);
+      .catch(error => {
+        setLoading(false);
+        setErrorMessage(error.message.split("Firebase: "))
       })
-      .catch(error => setErrorMessage(error.message.split("Firebase: ")))
   }
 
   const handleLogin = () => {
-      signInWithEmailAndPassword(auth, email, password)
-      .then(userCredentials => {
-        const user = userCredentials.user;
-        console.log('Logged in with:', user.email);
+    setLoading(true);
+    setErrorMessage('');
+    signInWithEmailAndPassword(auth, email, password)
+      .catch(error => {
+        setLoading(false);
+        setErrorMessage(error.message.split("Firebase: "))
       })
-      .catch(error => setErrorMessage(error.message.split("Firebase: ")))
+  }
+
+  const handleGuest = () => {
+    setLoading(true);
+    setErrorMessage('');
+    signInAnonymously(auth)
+      .catch(error => {
+        setLoading(false);
+        setErrorMessage(error.message.split("Firebase: "))
+      })
+  }
+
+  let authLoadStatus;
+  if (loading) {
+    authLoadStatus = "Authenticating, please wait...";
   }
 
   return (
@@ -59,9 +75,6 @@ const LoginScreen = () => {
           secureTextEntry
         />
       </View>
-
-      <Text style={styles.errorMessageText}>{errorMessage}</Text>
-
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={handleLogin}
@@ -74,6 +87,22 @@ const LoginScreen = () => {
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
+        </TouchableOpacity>
+        <Text style={styles.errorMessageText}>{errorMessage}</Text>
+        <Text style={styles.statusMessageText}>{authLoadStatus}</Text>
+        <Text>{"\n"}</Text>
+        <View
+          style={{
+            borderBottomColor: 'white',
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            alignSelf: 'stretch'
+          }} />
+        <Text style={{ color: 'white' }}>or</Text>
+        <TouchableOpacity
+          onPress={handleGuest}
+          style={[styles.button, styles.buttonOutline]}
+        >
+          <Text style={styles.buttonOutlineText}>Play Without Account</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -125,6 +154,11 @@ const styles = StyleSheet.create({
   },
   buttonOutlineText: {
     color: '#9AE19D',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+  statusMessageText: {
+    color: 'white',
     fontWeight: '700',
     fontSize: 16,
   },
