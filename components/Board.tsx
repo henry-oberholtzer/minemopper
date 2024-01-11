@@ -5,23 +5,23 @@ import { useState } from 'react';
 import { boardGraphics } from '../board-graphics';
 import { Image } from 'react-native';
 import newGame from '../game_logic/board-creator';
+import BoardHeader from './BoardHeader';
 
 const Board = ({ route }) => {
-	const { row, column, bombsNum } = route.params;
-	const x = JSON.stringify(row);
-	const y = JSON.stringify(column);
-	const bombs = JSON.stringify(bombsNum);
-	const game = newGame(x, y, bombs);
 	const [board, setBoard] = useState<number[][]>([]);
 	const [rendered, setRendered] = useState<number[][]>([]);
 	const [mines, setMines] = useState<number>(0);
-
 	useEffect(() => {
-		const game = newGame(10, 20, 20);
+		const { row, column, bombsNum } = route.params;
+		const game = newGame(row, column, bombsNum);
 		setRendered(game.overlay);
 		setBoard(game.board);
 		setMines(game.mines);
 	}, []);
+
+	useEffect(() => {
+		zeroOpen(board);
+	}, [board]);
 
 	const setNewRender = (originalBoard: number[][]) => {
 		return (x: number, y: number, tile: number) => {
@@ -36,6 +36,8 @@ const Board = ({ route }) => {
 	const isRevealed = (x: number, y: number) =>
 		board[y][x] === rendered[y][x] ? true : false;
 	const isMine = (x: number, y: number) => (board[y][x] === 10 ? true : false);
+	const isFlagged = (x: number, y: number) =>
+		rendered[y][x] === 12 ? true : false;
 	const getNeighboringTiles = (x: number, y: number) => [
 		[x, y],
 		[x - 1, y - 1],
@@ -57,8 +59,11 @@ const Board = ({ route }) => {
 		const tilesToReveal = getNeighboringTiles(x, y).filter((coord) => {
 			const [xCoord, yCoord] = coord;
 			if (isValidTile(xCoord, yCoord)) {
-				console.log(coord);
-				if (isMine(xCoord, yCoord) || isRevealed(xCoord, yCoord)) {
+				if (
+					isMine(xCoord, yCoord) ||
+					isFlagged(xCoord, yCoord) ||
+					isRevealed(xCoord, yCoord)
+				) {
 					return;
 				} else {
 					const newRender = [...rendered];
@@ -80,6 +85,14 @@ const Board = ({ route }) => {
 		}
 	};
 
+	const zeroOpen = (currentBoard: number[][]) => {
+		const yOpen = currentBoard.findIndex((array) => array.includes(0));
+		const xOpen = currentBoard[
+			currentBoard.findIndex((array) => array.includes(0))
+		].findIndex((num) => num === 0);
+		floodReveal(xOpen, yOpen);
+	};
+
 	const handleTilePress = (coords: number[], tile: number) => {
 		const [x, y] = coords;
 		if (rendered[y][x] === 12) {
@@ -90,7 +103,6 @@ const Board = ({ route }) => {
 		} else if (tile === 0) {
 			// reveals blank tile
 			floodReveal(x, y);
-			console.log('reveal function is triggered');
 		} else {
 			// reveals number tile
 			setRevealOrFlag(x, y, tile);
@@ -119,6 +131,7 @@ const Board = ({ route }) => {
 							return (
 								<Pressable
 									key={`${x},${y}`}
+									delayLongPress={150}
 									onPress={() => handleTilePress([x, y], board[y][x])}
 									onLongPress={() => handleLongPress([x, y])}>
 									<Image source={boardGraphics[tile]} />
@@ -131,7 +144,17 @@ const Board = ({ route }) => {
 		};
 	};
 
-	return <View style={styles.board}>{renderBoard(rendered)(board)}</View>;
+	return (
+		<>
+			<View>
+				<BoardHeader
+					mineCount={mines}
+					timerStart={false}
+				/>
+				{renderBoard(rendered)(board)}
+			</View>
+		</>
+	);
 };
 
 const styles = StyleSheet.create({
@@ -140,7 +163,10 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: '100%',
 		border: '2px solid #807d84ff',
-		backgroundColor: 'black',
+	},
+	tile: {
+		width: 32,
+		height: 32,
 	},
 	row: {
 		flexDirection: 'row',

@@ -2,21 +2,25 @@ import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
 import { clockGraphics, smileGraphics } from '../board-graphics';
 
-const BoardHeader = (props) => {
+const BoardHeader = (props: BoardHeader) => {
+	const { mineCount } = props;
+	const minesOnes = mineCount % 10;
+	const minesTens = Math.trunc((mineCount % 100) / 10);
+	const minesHundreds = Math.trunc(mineCount / 100);
 	return (
 		<View style={styles.header}>
 			<View style={styles.counter}>
 				<Image
 					style={styles.digit}
-					source={clockGraphics['blank']}
+					source={clockGraphics[minesHundreds]}
 				/>
 				<Image
 					style={styles.digit}
-					source={clockGraphics['blank']}
+					source={clockGraphics[minesTens]}
 				/>
 				<Image
 					style={styles.digit}
-					source={clockGraphics['blank']}
+					source={clockGraphics[minesOnes]}
 				/>
 			</View>
 			<Image
@@ -26,15 +30,15 @@ const BoardHeader = (props) => {
 			<View style={styles.counter}>
 				<Image
 					style={styles.digit}
-					source={clockGraphics['blank']}
+					source={clockGraphics[10]}
 				/>
 				<Image
 					style={styles.digit}
-					source={clockGraphics['blank']}
+					source={clockGraphics[10]}
 				/>
 				<Image
 					style={styles.digit}
-					source={clockGraphics['blank']}
+					source={clockGraphics[10]}
 				/>
 			</View>
 		</View>
@@ -46,11 +50,15 @@ export default BoardHeader;
 const styles = StyleSheet.create({
 	header: {
 		backgroundColor: '#bfbfbfff',
+		display: 'flex',
+		flexDirection: 'row',
 	},
 	counter: {
 		height: 62,
-		width: 112,
+		width: 120,
 		padding: 2,
+		display: 'flex',
+		flexDirection: 'row',
 		backgroundColor: '#807d84ff',
 	},
 	digit: {
@@ -68,6 +76,6 @@ const styles = StyleSheet.create({
 });
 
 interface BoardHeader {
-	bombCount: number;
+	mineCount: number;
 	timerStart: boolean;
 }
