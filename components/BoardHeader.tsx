@@ -1,9 +1,10 @@
 import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
+import Timer from './Timer';
 import { clockGraphics, smileGraphics } from '../board-graphics';
 
 const BoardHeader = (props: BoardHeader) => {
-	const { mineCount } = props;
+	const { mineCount, smile } = props;
 	const minesOnes = mineCount % 10;
 	const minesTens = Math.trunc((mineCount % 100) / 10);
 	const minesHundreds = Math.trunc(mineCount / 100);
@@ -25,22 +26,9 @@ const BoardHeader = (props: BoardHeader) => {
 			</View>
 			<Image
 				style={styles.smile}
-				source={smileGraphics['happy']}
+				source={smileGraphics[smile ? 'happy' : 'sad']}
 			/>
-			<View style={styles.counter}>
-				<Image
-					style={styles.digit}
-					source={clockGraphics[10]}
-				/>
-				<Image
-					style={styles.digit}
-					source={clockGraphics[10]}
-				/>
-				<Image
-					style={styles.digit}
-					source={clockGraphics[10]}
-				/>
-			</View>
+			<Timer isActive={props.timerStart} />
 		</View>
 	);
 };
@@ -78,4 +66,5 @@ const styles = StyleSheet.create({
 interface BoardHeader {
 	mineCount: number;
 	timerStart: boolean;
+	smile: boolean;
 }

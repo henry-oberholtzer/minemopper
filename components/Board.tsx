@@ -11,16 +11,22 @@ const Board = ({ route }) => {
 	const [board, setBoard] = useState<number[][]>([]);
 	const [rendered, setRendered] = useState<number[][]>([]);
 	const [mines, setMines] = useState<number>(0);
+	const [flags, setFlags] = useState<number>(0);
+	const [smile, setSmile] = useState<boolean>(true);
+	const [gameActive, setGameActive] = useState<boolean>(false);
 	useEffect(() => {
 		const { row, column, bombsNum } = route.params;
 		const game = newGame(row, column, bombsNum);
 		setRendered(game.overlay);
 		setBoard(game.board);
 		setMines(game.mines);
+		setGameActive(true);
 	}, []);
 
 	useEffect(() => {
-		zeroOpen(board);
+		if (board.length > 0) {
+			zeroOpen(board);
+		}
 	}, [board]);
 
 	const setNewRender = (originalBoard: number[][]) => {
@@ -30,14 +36,41 @@ const Board = ({ route }) => {
 			setRendered(newRender);
 		};
 	};
-	const setDetonate = setNewRender(board);
 	const setRevealOrFlag = setNewRender(rendered);
+
+	const revealGameOverBoard = (
+		board: number[][],
+		rendered: number[][],
+		detonated: number[]
+	) => {
+		return board.map((row, y) => {
+			return row.map((tile, x) => {
+				if (x === detonated[0] && y === detonated[1]) {
+					// if is the point of detonation
+					return 9;
+				} else if (tile === 10 && rendered[y][x] === 12) {
+					// if is a correct flag
+					return 12;
+				} else if (tile !== 10 && rendered[y][x] === 12) {
+					// if is not a correct flag
+					return 13;
+				} else {
+					return tile;
+				}
+			});
+		});
+	};
 
 	const isRevealed = (x: number, y: number) =>
 		board[y][x] === rendered[y][x] ? true : false;
 	const isMine = (x: number, y: number) => (board[y][x] === 10 ? true : false);
 	const isFlagged = (x: number, y: number) =>
 		rendered[y][x] === 12 ? true : false;
+	const isValidTile = (x: number, y: number) =>
+		0 <= y && y <= board.length - 1 && x >= 0 && x <= board[0].length - 1
+			? true
+			: false;
+
 	const getNeighboringTiles = (x: number, y: number) => [
 		[x, y],
 		[x - 1, y - 1],
@@ -49,10 +82,6 @@ const Board = ({ route }) => {
 		[x, y + 1],
 		[x, y - 1],
 	];
-	const isValidTile = (x: number, y: number) =>
-		0 <= y && y <= board.length - 1 && x >= 0 && x <= board[0].length - 1
-			? true
-			: false;
 	const getBoardTile = (x: number, y: number) => board[y][x];
 
 	const floodReveal = (x: number, y: number) => {
@@ -86,11 +115,30 @@ const Board = ({ route }) => {
 	};
 
 	const zeroOpen = (currentBoard: number[][]) => {
-		const yOpen = currentBoard.findIndex((array) => array.includes(0));
-		const xOpen = currentBoard[
-			currentBoard.findIndex((array) => array.includes(0))
-		].findIndex((num) => num === 0);
-		floodReveal(xOpen, yOpen);
+		const getOpenOptions = (board: number[][]) => {
+			const openOptions = [];
+			for (let y = 0; y < board.length; y++) {
+				for (let x = 0; x < board[y].length; x++) {
+					if (board[y][x] === 0) {
+						openOptions.push([x, y]);
+					}
+				}
+			}
+			return openOptions;
+		};
+		const sortByX = (array: number[][]) => {
+			return array.sort((a, b) => {
+				if (a[0] < b[0]) {
+					return -1;
+				} else if (b[0] < a[0]) {
+					return 1;
+				}
+			});
+		};
+		const options = getOpenOptions(currentBoard);
+		const sort = sortByX(options);
+		const middle = sort[Math.round(sort.length / 2)];
+		floodReveal(middle[0], middle[1]);
 	};
 
 	const handleTilePress = (coords: number[], tile: number) => {
@@ -98,8 +146,10 @@ const Board = ({ route }) => {
 		if (rendered[y][x] === 12) {
 		} else if (tile === 10) {
 			// sets detonated
-			setDetonate(x, y, 9);
-			console.log('gameover function is triggered');
+			setRendered(revealGameOverBoard(board, rendered, [x, y]));
+			setSmile(false);
+			setGameActive(false);
+			console.log('game over function');
 		} else if (tile === 0) {
 			// reveals blank tile
 			floodReveal(x, y);
@@ -114,9 +164,11 @@ const Board = ({ route }) => {
 		if (rendered[y][x] === 12) {
 			// unsets flags
 			setRevealOrFlag(x, y, 11);
+			setFlags(flags - 1);
 		} else if (rendered[y][x] === 11) {
 			// sets flags
 			setRevealOrFlag(x, y, 12);
+			setFlags(flags + 1);
 		}
 	};
 
@@ -132,6 +184,7 @@ const Board = ({ route }) => {
 								<Pressable
 									key={`${x},${y}`}
 									delayLongPress={150}
+									disabled={gameActive ? false : true}
 									onPress={() => handleTilePress([x, y], board[y][x])}
 									onLongPress={() => handleLongPress([x, y])}>
 									<Image source={boardGraphics[tile]} />
@@ -148,8 +201,9 @@ const Board = ({ route }) => {
 		<>
 			<View>
 				<BoardHeader
-					mineCount={mines}
-					timerStart={false}
+					mineCount={mines - flags}
+					timerStart={gameActive}
+					smile={smile}
 				/>
 				{renderBoard(rendered)(board)}
 			</View>
