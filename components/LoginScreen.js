@@ -114,6 +114,7 @@ export default LoginScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#C0C0C0',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#C0C0C0',
@@ -127,6 +128,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10,
     marginTop: 5,
+    borderColor: 'grey',
+    borderWidth: 2,
   },
   buttonContainer: {
     width: '60%',
@@ -140,9 +143,11 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
+    borderColor: 'grey',
+    borderWidth: 2,
   },
   buttonOutline: {
-    backgroundColor: 'white',
+    backgroundColor: '#9AE19D',
     marginTop: 5,
     borderColor: '#9AE19D',
     borderWidth: 2,
