@@ -40,10 +40,14 @@ const LoginScreen = () => {
   }
 
   return (
+    
     <KeyboardAvoidingView
       style={styles.container}
       behavior="padding"
     >
+      <View>
+      <Text style={styles.title}>Sign In</Text>
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -81,6 +85,12 @@ const LoginScreen = () => {
 export default LoginScreen
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    textAlign: 'center',
+    marginBottom: 75,
+    color: 'white',
+  },
   container: {
     flex: 1,
     backgroundColor: '#C0C0C0',

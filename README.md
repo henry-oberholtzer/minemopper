@@ -21,7 +21,6 @@ This project was bootstrapped with [Create Expo App](https://docs.expo.dev/tutor
 * 💥 _Expo/webpack config: v 19.0.0_
 * 💣 _React-navigation/native": v6.1.9_
 * 🚩 _React-navigation/native-stack: v 6.9.17_
-* 💣 _React-navigation/native-stack: v ^6.9.17_
 * ⌛ _types/react: v ~18.2.14_
 * 💣 _Expo: v ~49.0.15_
 * 🚩 _Expo-status-bar: v ~1.6.0_
@@ -115,7 +114,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/m
 
 ## Known Bugs
 
-* _No known bugs as of yet_
+* _1. _
+* _2. Board will make unplayable boards_
 
 ## License
 [MIT](https://github.com/mejia-dev/react-section-portfolio/blob/main/License.txt)
