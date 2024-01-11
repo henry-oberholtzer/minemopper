@@ -27,7 +27,7 @@ const LoginScreen = () => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);
       })
-      .catch(error => setErrorMessage(error.message))
+      .catch(error => setErrorMessage(error.message.split("Firebase: ")))
   }
 
   const handleLogin = () => {
@@ -36,7 +36,7 @@ const LoginScreen = () => {
         const user = userCredentials.user;
         console.log('Logged in with:', user.email);
       })
-      .catch(error => setErrorMessage(error.message))
+      .catch(error => setErrorMessage(error.message.split("Firebase: ")))
   }
 
   return (
@@ -60,7 +60,7 @@ const LoginScreen = () => {
         />
       </View>
 
-      <Text>{errorMessage}</Text>
+      <Text style={styles.errorMessageText}>{errorMessage}</Text>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#C0C0C0',
   },
   inputContainer: {
     width: '80%'
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#9AE19D',
     width: '100%',
     padding: 15,
     borderRadius: 10,
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#0782F9',
+    borderColor: '#9AE19D',
     borderWidth: 2,
   },
   buttonText: {
@@ -123,7 +124,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#0782F9',
+    color: '#9AE19D',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+  errorMessageText: {
+    color: '#BA2D0B',
     fontWeight: '700',
     fontSize: 16,
   },
