@@ -17,7 +17,7 @@ const Board = ({ route }) => {
 	const [mines, setMines] = useState<number>(0)
 
 	useEffect(() => {
-		const game = newGame(8, 8, 6)
+		const game = newGame(10, 20, 20)
 		setRendered(game.overlay)
 		setBoard(game.board)
 		setMines(game.mines)
