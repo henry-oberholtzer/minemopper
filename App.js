@@ -1,7 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import StartPopUp from './components/StartPopUp';
-import LeaderBoard from './components/LeaderBoard';
 import MainMenu from './components/MainMenu';
 import Board from './components/Board';
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,9 +13,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="LogIn">
         <Stack.Screen name="LogIn" component={LoginScreen} options={{
           title: 'MineMopper',
-          headerStyle: {
-            backgroundColor: '#E39600',
-          },
+          headerShown: false,
           headerTitleAlign: 'center',
         }} />
         <Stack.Screen name="Main" component={MainMenu} options={{
@@ -36,17 +30,8 @@ export default function App() {
           },
           headerTitleAlign: 'center',
         }} />
-        {/* <StatusBar style="auto" /> */}
       </Stack.Navigator>
     </NavigationContainer >
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#C0C0C0',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
