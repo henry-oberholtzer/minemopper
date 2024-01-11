@@ -1,6 +1,6 @@
 # MineMopper
 
-A playable minecraft based game application that for mobile devices using react-native 
+A playable minesweeper based game application that for mobile devices using react-native 
 
 This project was bootstrapped with [Create Expo App](https://docs.expo.dev/tutorial/create-your-first-app/).
 
@@ -38,7 +38,7 @@ This project was bootstrapped with [Create Expo App](https://docs.expo.dev/tutor
 
 
 ## Description
-* This is a playable phone application for android, IOS and via browser of the classic Microsoft game minecraft in the style of minemopper.  Register (or if already have an account registered please sign in with your credentials) to access game play. The intention of the game is to uncover all tiles without clicking ona bomb. Click on any of the tiles to begin, a blank space confirms that no surrounding tiles have a bomb, a number will tell you how many of the tiles surrounding said number have incindiary devices attached.  A timer is started on first tile click that player must compete with to complete the level. Difficulty setting may be adjusted for amount of bombs and tiles. Player may save there current game and high score to return at later time.  To view the scoreboard click option in menu. This app was built using Typescript for back-end and react-native library on front end
+* This is a playable phone application for android, IOS and via browser of the classic Microsoft game minesweeper in the style of minemopper.  Register (or if already have an account registered please sign in with your credentials) to access game play. The intention of the game is to uncover all tiles without clicking ona bomb. Click on any of the tiles to begin, a blank space confirms that no surrounding tiles have a bomb, a number will tell you how many of the tiles surrounding said number have incindiary devices attached.  A timer is started on first tile click that player must compete with to complete the level. Difficulty setting may be adjusted for amount of bombs and tiles. Player may save there current game and high score to return at later time.  To view the scoreboard click option in menu. This app was built using Typescript for back-end and react-native library on front end
 
 ## Setup/Installation Requirements
 
