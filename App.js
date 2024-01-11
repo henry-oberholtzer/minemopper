@@ -6,7 +6,7 @@ import MainMenu from './components/MainMenu';
 import Board from './components/Board';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AuthForm from './src/auth/AuthForm'
+import AuthForm from './components/auth/AuthForm';
 
 
 const Stack = createNativeStackNavigator();

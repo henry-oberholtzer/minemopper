@@ -5,9 +5,6 @@ import Button from './Button';
 import newGame from '../game_logic/board-creator';
 import LeaderBoard from './LeaderBoard';
 
-const game = newGame(8, 8, 8);
-
-
 const MainMenu = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [leaderboardVisible, setLeaderboardVisible] = useState(false);
