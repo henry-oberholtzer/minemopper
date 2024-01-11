@@ -17,7 +17,7 @@ const Board = ({ route }) => {
 	const [mines, setMines] = useState<number>(0)
 
 	useEffect(() => {
-		const game = newGame(12, 22, 10)
+		const game = newGame(8, 8, 0)
 		setRendered(game.overlay)
 		setBoard(game.board)
 		setMines(game.mines)
@@ -31,7 +31,38 @@ const Board = ({ route }) => {
 		}
 	}
 	const setDetonate = setNewRender(board);
-	const setRevealOrFlag = setNewRender(rendered)
+	const setRevealOrFlag = setNewRender(rendered);
+
+	const isRevealed = (x: number, y: number) => board[y][x] === rendered[y][x] ? true : false;
+	const isMine = (x: number, y: number) => board[y][x] === 10 ? true : false;
+	const getNeighboringTiles = (x: number, y: number) => [[x - 1, y - 1], [x + 1, y + 1], [x - 1, y + 1], [x + 1, y - 1 ],[x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]];
+	const isValidTile = (x: number, y: number) => y >= 0 && x >= 0 || y <= board.length - 1 && x <= board[0].length - 1? true : false;
+	const getBoardTile = (x: number, y:number) => board[y][x]
+
+	const floodReveal = (x: number, y: number) => {
+		const tilesToReveal = getNeighboringTiles(x, y).filter((coord) => {
+			const [xCoord, yCoord] = coord;
+			if (isValidTile(xCoord, yCoord)) {
+				if (isMine(xCoord, yCoord) || isRevealed(xCoord, yCoord)) {
+					return;
+				} else {
+					const newRender = [...rendered];
+					newRender[yCoord][xCoord] = getBoardTile(xCoord, yCoord);
+					setRendered(newRender);
+					return coord;
+				}
+			}
+
+		});
+		
+		
+		if (tilesToReveal.length - 1 != 0) {
+			tilesToReveal.forEach((coord) => {
+				
+				floodReveal(coord[0], coord[1])
+			})
+		}
+	}
 
 	const handleTilePress = (coords: number[], tile: number) => {
 		const [x, y] = coords;
@@ -41,6 +72,7 @@ const Board = ({ route }) => {
 			setDetonate(x, y, 9)
 			console.log('gameover function is triggered')
 		} else if (tile === 0) { // reveals blank tile
+			floodReveal(x, y)
 			console.log('reveal function is triggered')
 		} else { // reveals number tile
 			setRevealOrFlag(x, y, tile)
