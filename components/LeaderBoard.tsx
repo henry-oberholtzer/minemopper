@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { db } from '../src/auth/Firebase';
+import { db } from './auth/Firebase';
 import { collection, getDocs, query } from "firebase/firestore";
 
 
-export default function LeaderBoard() {
+const LeaderBoard: React.FC = () => {
 	
 	const [highScores, setHighScores] = useState([]);
 
@@ -72,7 +72,7 @@ export default function LeaderBoard() {
 const styles = StyleSheet.create({
 	mainBodyStyle: {
 		backgroundColor: '#C0C0C0',
-		width: '100%'
+		width: '100%',
 	},
 	mainBodyTitle: {
 		textAlign: 'center',
@@ -98,3 +98,5 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold'
 	}
 });
+
+export default LeaderBoard;

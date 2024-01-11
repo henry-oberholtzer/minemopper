@@ -2,9 +2,15 @@ import { useState } from 'react';
 import { View, StyleSheet, Text, Image, Modal } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from './Button';
+import newGame from '../game_logic/board-creator';
+import LeaderBoard from './LeaderBoard';
+
+const game = newGame(8, 8, 8);
+
 
 const MainMenu = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [leaderboardVisible, setLeaderboardVisible] = useState(false);
 
     const modalOn = () => {
         setModalVisible(true);
@@ -29,7 +35,7 @@ const MainMenu = ({ navigation }) => {
                 <View style={styles.buttonContainer}>
                     <Button label="Start Game" func={() => modalOn()} />
                     <Button label="Resume Game" />
-                    <Button label="View Leaderboard" />
+                    <Button label="View Leaderboard" func={() => setLeaderboardVisible(true)} />
                     <Button label="Sign out" />
                     <Modal visible={modalVisible}
                         onRequestClose={() => setModalVisible(false)}
@@ -82,6 +88,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 25,
         padding: 3,
+    },
+    leaderboardContainer: {
+        position: 'absolute',
+        top: 40,
+        width: '100%',
+        backgroundColor: '#C0C0C0',
+        bottom: 0,
     },
     footerStyle: {
         backgroundColor: '#474A48',
