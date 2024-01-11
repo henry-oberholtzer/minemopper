@@ -4,7 +4,7 @@ import { auth } from './Firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 
-export default function LoginForm() {
+export default function LoginForm({ navigation }) {
 
   const [accountCreds, setAccountCreds] = useState({
     email: '',
@@ -42,6 +42,7 @@ export default function LoginForm() {
     try {
       await signInWithEmailAndPassword(auth, accountCreds.email, accountCreds.password);
       console.log("Sign-in success!");
+      navigation.navigate("Main");
     } catch (error) {
       setAccountCreds({
         ...accountCreds,
@@ -50,7 +51,7 @@ export default function LoginForm() {
     }
   }
 
-  return(
+  return (
     <View>
 
       <Text>I AM THE SIGN IN FORM!!!</Text>
@@ -67,29 +68,29 @@ export default function LoginForm() {
 
       <Text>{accountCreds.error}</Text>
       <Text>{auth.user}</Text>
-      
 
-			<View style={styles.inputHolder}>
-      <TextInput
-				textContentType="emailAddress"
-				placeholder="Email"
-				placeholderTextColor={'gray'}
-				onChangeText={(inputtedEmail) => setAccountCreds({...accountCreds, email: inputtedEmail})}
-				autoComplete="email"
-			/>
-			<TextInput
-				secureTextEntry
-				placeholder="Password"
-				placeholderTextColor={'gray'}
-				onChangeText={(inputtedPassword) => setAccountCreds({...accountCreds, password: inputtedPassword})}
-				autoComplete="password"
-			/>
-		</View>
-  </View>
+
+      <View style={styles.inputHolder}>
+        <TextInput
+          textContentType="emailAddress"
+          placeholder="Email"
+          placeholderTextColor={'gray'}
+          onChangeText={(inputtedEmail) => setAccountCreds({ ...accountCreds, email: inputtedEmail })}
+          autoComplete="email"
+        />
+        <TextInput
+          secureTextEntry
+          placeholder="Password"
+          placeholderTextColor={'gray'}
+          onChangeText={(inputtedPassword) => setAccountCreds({ ...accountCreds, password: inputtedPassword })}
+          autoComplete="password"
+        />
+      </View>
+    </View>
   )
 };
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     backgroundColor: '#9AE19D',
     padding: '10px',
