@@ -1,5 +1,6 @@
 import MainMenu from './components/MainMenu';
 import Board from './components/Board';
+import { Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './components/LoginScreen';
@@ -13,7 +14,6 @@ export default function App() {
       <Stack.Navigator initialRouteName="LogIn">
         <Stack.Screen name="LogIn" component={LoginScreen} options={{
           title: 'MineMopper',
-          // headerShown: false,
           headerTitleAlign: 'center',
           headerLeft: () => null,
           headerStyle: {
@@ -33,7 +33,15 @@ export default function App() {
             backgroundColor: '#E39600',
           },
           headerTitleAlign: 'center',
-        }} />
+          headerRight: () => (
+            <Button
+              onPress={() => alert('This is a button!')}
+              title="Save"
+              color='#9AE190'
+              margin="2"
+            />)
+        }}
+        />
       </Stack.Navigator>
     </NavigationContainer >
   );

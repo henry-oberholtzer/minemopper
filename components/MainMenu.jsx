@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { View, StyleSheet, Text, Image, Modal } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from './Button';
 import LeaderBoard from './LeaderBoard';
 import { signOut } from "firebase/auth";
@@ -76,7 +75,7 @@ const MainMenu = ({ navigation }) => {
 
     return (
         <>
-            <View style={styles.headerStyle}></View>
+            {/* <View style={styles.headerStyle}></View> */}
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={TitleImage} />
             </View>
@@ -99,6 +98,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#E39600',
         position: "absolute",
         top: 0
+    },
+    imageContainer: {
+        alignItems: 'center',
+        backgroundColor: '#C0C0C0'
     },
     buttonContainer: {
         width: 320,
@@ -124,18 +127,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0
     },
-    imageContainer: {
-        position: 'absolute',
-        top: 40,
-        alignItems: "center",
-        marginBottom: 20
-    },
-    image: {
-        width: 50,
-        height: 50
-        // width: wp('100%'),
-        // height: hp('30%'),
-    },
     container: {
         flex: 1,
         flexDirection: 'column',
@@ -149,14 +140,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     }
 });
-
-// const styles = StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       backgroundColor: '#C0C0C0',
-//       alignItems: 'center',
-//       justifyContent: 'center',
-//     },
-//   });
 
 export default MainMenu;
