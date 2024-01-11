@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { View, StyleSheet, Text, Image, Modal } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from './Button';
 import LeaderBoard from './LeaderBoard';
+import { signOut } from "firebase/auth";
+import { auth } from './auth/Firebase';
 
 const MainMenu = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -25,6 +26,17 @@ const MainMenu = ({ navigation }) => {
         modalOff();
     };
 
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            navigation.navigate("LogIn")
+            console.log("Signed out successfully")
+        } catch (error) {
+            console.log("Error: ", error.message)
+        };
+    }
+
+
     let currentView = (
         <>
             <View style={styles.container}>
@@ -32,12 +44,12 @@ const MainMenu = ({ navigation }) => {
                     <Button label="Start Game" func={() => modalOn()} />
                     <Button label="Resume Game" />
                     <Button label="View Leaderboard" func={() => setLeaderboardVisible(true)} />
-                    <Button label="Sign out" />
+                    <Button label="Sign out" func={() => handleSignOut()} />
                     <Modal visible={modalVisible}
                         onRequestClose={() => setModalVisible(false)}
                         animationType="slide">
-                        <View style={styles.modalStyle}>
-                            <View style={styles.headerStyle}></View>
+                        <View style={styles.headerStyle}></View>
+                        <View style={styles.leaderboardContainer}>
                             <View style={styles.buttonContainer}>
                                 <Button label="Easy" func={() => play(10, 20, 40)} />
                                 <Button label="Medium" func={() => play(10, 20, 60)} />
@@ -45,6 +57,7 @@ const MainMenu = ({ navigation }) => {
                                 <Button label="Back" func={() => modalOff()} theme="back-button" />
                             </View>
                         </View>
+
                     </Modal>
                     <Modal visible={leaderboardVisible}
                         onRequestClose={() => setLeaderboardVisible(false)}
@@ -63,7 +76,6 @@ const MainMenu = ({ navigation }) => {
 
     return (
         <>
-            <View style={styles.headerStyle}></View>
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={TitleImage} />
             </View>
@@ -86,6 +98,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#E39600',
         position: "absolute",
         top: 0
+    },
+    imageContainer: {
+        alignItems: 'center',
+        backgroundColor: '#C0C0C0'
     },
     buttonContainer: {
         width: 320,
@@ -111,18 +127,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0
     },
-    imageContainer: {
-        position: 'absolute',
-        top: 40,
-        alignItems: "center",
-        marginBottom: 20
-    },
-    image: {
-        width: 50,
-        height: 50
-        // width: wp('100%'),
-        // height: hp('30%'),
-    },
     container: {
         flex: 1,
         flexDirection: 'column',
@@ -130,20 +134,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    modalStyle: {
-        backgroundColor: '#C0C0C0',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
 });
-
-// const styles = StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       backgroundColor: '#C0C0C0',
-//       alignItems: 'center',
-//       justifyContent: 'center',
-//     },
-//   });
 
 export default MainMenu;

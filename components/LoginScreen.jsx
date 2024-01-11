@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 import { auth } from '../src/auth/Firebase'
@@ -41,6 +40,9 @@ const LoginScreen = ({ navigation }) => {
         style={styles.container}
         behavior="padding"
       >
+        <View style={styles.headerStyle}>
+          <Text style={styles.titleStyle}>MineMopper</Text>
+        </View>
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Email"
@@ -79,6 +81,18 @@ const LoginScreen = ({ navigation }) => {
 export default LoginScreen
 
 const styles = StyleSheet.create({
+  headerStyle: {
+    height: 50,
+    width: 100,
+    backgroundColor: '#E39600',
+    position: "absolute",
+    top: 0,
+    alignItems: "center"
+  },
+  titleStyle: {
+    fontSize: 40,
+    color: "white"
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
