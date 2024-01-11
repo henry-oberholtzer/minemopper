@@ -48,8 +48,8 @@ const MainMenu = ({ navigation }) => {
                     <Modal visible={modalVisible}
                         onRequestClose={() => setModalVisible(false)}
                         animationType="slide">
-                        <View style={styles.modalStyle}>
-                            <View style={styles.headerStyle}></View>
+                        <View style={styles.headerStyle}></View>
+                        <View style={styles.leaderboardContainer}>
                             <View style={styles.buttonContainer}>
                                 <Button label="Easy" func={() => play(10, 20, 40)} />
                                 <Button label="Medium" func={() => play(10, 20, 60)} />
@@ -57,6 +57,7 @@ const MainMenu = ({ navigation }) => {
                                 <Button label="Back" func={() => modalOff()} theme="back-button" />
                             </View>
                         </View>
+
                     </Modal>
                     <Modal visible={leaderboardVisible}
                         onRequestClose={() => setLeaderboardVisible(false)}
@@ -75,7 +76,6 @@ const MainMenu = ({ navigation }) => {
 
     return (
         <>
-            {/* <View style={styles.headerStyle}></View> */}
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={TitleImage} />
             </View>
@@ -134,11 +134,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    modalStyle: {
-        backgroundColor: '#C0C0C0',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
 });
 
 export default MainMenu;
