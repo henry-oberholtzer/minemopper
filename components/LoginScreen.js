@@ -2,11 +2,12 @@ import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity  } from 'react-native';
 import { auth } from './auth/Firebase'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigation = useNavigation();
 
@@ -26,17 +27,16 @@ const LoginScreen = () => {
         const user = userCredentials.user;
         console.log('Registered with:', user.email);
       })
-      .catch(error => alert(error.message))
+      .catch(error => setErrorMessage(error.message))
   }
 
   const handleLogin = () => {
-    auth
-      .signInWithEmailAndPassword(email, password)
+      signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Logged in with:', user.email);
       })
-      .catch(error => alert(error.message))
+      .catch(error => setErrorMessage(error.message))
   }
 
   return (
@@ -59,6 +59,8 @@ const LoginScreen = () => {
           secureTextEntry
         />
       </View>
+
+      <Text>{errorMessage}</Text>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -125,6 +127,4 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
   },
-})
-
-//
+});
