@@ -2,11 +2,7 @@ import { useState } from 'react';
 import { View, StyleSheet, Text, Image, Modal } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from './Button';
-import newGame from '../game_logic/board-creator';
 import LeaderBoard from './LeaderBoard';
-
-const game = newGame(8, 8, 8);
-
 
 const MainMenu = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -18,10 +14,6 @@ const MainMenu = ({ navigation }) => {
 
     const modalOff = () => {
         setModalVisible(false);
-    };
-
-    const exit = () => {
-        setView(false);
     };
 
     const goToBoard = (x, y, bombs) => {
@@ -39,18 +31,19 @@ const MainMenu = ({ navigation }) => {
                 <View style={styles.buttonContainer}>
                     <Button label="Start Game" func={() => modalOn()} />
                     <Button label="Resume Game" />
-                    <Button label="View Leaderboard" func={() => setLeaderboardVisible(true)}/>
+                    <Button label="View Leaderboard" func={() => setLeaderboardVisible(true)} />
                     <Button label="Sign out" />
                     <Modal visible={modalVisible}
                         onRequestClose={() => setModalVisible(false)}
-                        animationType="slide"
-                        style={styles.container}>
-                        <View style={styles.headerStyle}></View>
-                        <View style={styles.buttonContainer}>
-                            <Button label="Easy" func={() => play(8, 8, 8)} />
-                            <Button label="Medium" func={() => play(16, 16, 16)} />
-                            <Button label="Hard" func={() => play(32, 32, 32)} />
-                            <Button label="Back" func={() => modalOff()} theme="back-button" />
+                        animationType="slide">
+                        <View style={styles.modalStyle}>
+                            <View style={styles.headerStyle}></View>
+                            <View style={styles.buttonContainer}>
+                                <Button label="Easy" func={() => play(10, 20, 40)} />
+                                <Button label="Medium" func={() => play(10, 20, 60)} />
+                                <Button label="Hard" func={() => play(10, 20, 80)} />
+                                <Button label="Back" func={() => modalOff()} theme="back-button" />
+                            </View>
                         </View>
                     </Modal>
                     <Modal visible={leaderboardVisible}
@@ -62,11 +55,6 @@ const MainMenu = ({ navigation }) => {
                             <LeaderBoard />
                             <Button label="Back" func={() => setLeaderboardVisible(false)} theme="back-button" />
                         </View>
-                        <View style={styles.footerStyle}>
-                <Text style={{ color: 'white' }}>
-                    Copyright Teddy, Henry, Aaron, Grant, and Chris. NO STEALING
-                </Text>
-            </View>            
                     </Modal>
                 </View>
             </View>
@@ -76,9 +64,9 @@ const MainMenu = ({ navigation }) => {
     return (
         <>
             <View style={styles.headerStyle}></View>
-            {/* <View style={styles.imageContainer}>
+            <View style={styles.imageContainer}>
                 <Image style={styles.image} source={TitleImage} />
-            </View> */}
+            </View>
             {currentView}
             <View style={styles.footerStyle}>
                 <Text style={{ color: 'white' }}>
@@ -89,7 +77,7 @@ const MainMenu = ({ navigation }) => {
     );
 };
 
-const TitleImage = require('../assets/images/minemopper.png')
+const TitleImage = require('../assets/mm.png')
 
 const styles = StyleSheet.create({
     headerStyle: {
@@ -130,12 +118,19 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     image: {
-        width: wp('100%'),
-        height: hp('30%'),
+        width: 50,
+        height: 50
+        // width: wp('100%'),
+        // height: hp('30%'),
     },
     container: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: '#C0C0C0',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalStyle: {
         backgroundColor: '#C0C0C0',
         alignItems: 'center',
         justifyContent: 'center',

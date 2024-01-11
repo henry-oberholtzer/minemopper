@@ -15,27 +15,29 @@ const Board = ({ route }) => {
 	const { board } = game;
 	const [detonate, setDetonate] = useState(false);
 	return (
-		<View style={styles.board}>
-			{board.map((row, y) => {
-				return (
-					<View
-						id={y}
-						key={y}
-						style={styles.row}>
-						{row.map((tile, x) => {
-							return (
-								<BoardTile
-									detonate={detonate}
-									setDetonate={setDetonate}
-									type={tile}
-									location={[x, y]}
-									key={x}
-								/>
-							);
-						})}
-					</View>
-				);
-			})}
+		<View style={styles.boardPage}>
+			<View style={styles.board}>
+				{board.map((row, y) => {
+					return (
+						<View
+							id={y}
+							key={y}
+							style={styles.row}>
+							{row.map((tile, x) => {
+								return (
+									<BoardTile
+										detonate={detonate}
+										setDetonate={setDetonate}
+										type={tile}
+										location={[x, y]}
+										key={x}
+									/>
+								);
+							})}
+						</View>
+					);
+				})}
+			</View>
 		</View>
 	);
 };
@@ -51,6 +53,10 @@ const styles = StyleSheet.create({
 	row: {
 		flexDirection: 'row',
 	},
+	boardPage: {
+		// alignItems: "center",
+		justifyContent: "center"
+	}
 });
 
 export default Board;
