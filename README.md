@@ -4,7 +4,11 @@ A playable minecraft based game application that for mobile devices using react-
 
 This project was bootstrapped with [Create Expo App](https://docs.expo.dev/tutorial/create-your-first-app/).
 
-![Figma Component Diagram](https://www.figma.com/file/WPkAtbhns2LfGyGIO7Amr3/Main-App?type=design&node-id=0-1&mode=design&t=wa3YySYS0Ic4YJdG-0)
+![Figma Component Diagram](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FWPkAtbhns2LfGyGIO7Amr3%2FMain-App%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3Dwa3YySYS0Ic4YJdG-1)
+
+[Figma Component Diagram](https://www.figma.com/file/WPkAtbhns2LfGyGIO7Amr3/Main-App?type=design&node-id=0%3A1&mode=design&t=wa3YySYS0Ic4YJdG-1)
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FWPkAtbhns2LfGyGIO7Amr3%2FMain-App%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3Dwa3YySYS0Ic4YJdG-1" allowfullscreen></iframe>
 
 #### By Christopher Davila, Aaron Mejia, Henry Oberholtzer, Grant Abe, Teddy Peterschmidt
 
