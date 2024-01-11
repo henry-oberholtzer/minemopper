@@ -6,25 +6,25 @@ import { signOut } from "firebase/auth";
 import { auth } from './auth/Firebase';
 
 const MainMenu = ({ navigation }) => {
-    const [modalVisible, setModalVisible] = useState(false);
-    const [leaderboardVisible, setLeaderboardVisible] = useState(false);
+	const [modalVisible, setModalVisible] = useState(false);
+	const [leaderboardVisible, setLeaderboardVisible] = useState(false);
 
-    const modalOn = () => {
-        setModalVisible(true);
-    };
+	const modalOn = () => {
+		setModalVisible(true);
+	};
 
-    const modalOff = () => {
-        setModalVisible(false);
-    };
+	const modalOff = () => {
+		setModalVisible(false);
+	};
 
-    const goToBoard = (x, y, bombs) => {
-        navigation.navigate('Board', { row: x, column: y, bombsNum: bombs });
-    }
+	const goToBoard = (x, y, bombs) => {
+		navigation.navigate('Board', { row: x, column: y, bombsNum: bombs });
+	};
 
-    const play = (x, y, bombs) => {
-        goToBoard(x, y, bombs);
-        modalOff();
-    };
+	const play = (x, y, bombs) => {
+		goToBoard(x, y, bombs);
+		modalOff();
+	};
 
     const handleSignOut = async () => {
         try {
@@ -89,7 +89,7 @@ const MainMenu = ({ navigation }) => {
     );
 };
 
-const TitleImage = require('../assets/mm.png')
+const TitleImage = require('../assets/mm.png');
 
 const styles = StyleSheet.create({
     headerStyle: {
