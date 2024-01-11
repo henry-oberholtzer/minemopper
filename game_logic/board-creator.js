@@ -72,6 +72,7 @@ const boardGenerator = (xLength, yLength, numberOfMines) => {
 
 const newGame = (xLength, yLength, numberOfMines) => ({
 	board: boardGenerator(xLength, yLength, numberOfMines),
+	overlay: makeBoardGrid(new Array(xLength * yLength).fill(11), xLength),
 	mines: numberOfMines,
 });
 
