@@ -88,9 +88,9 @@ const LoginScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleSignUp}
-          style={[styles.button, styles.buttonOutline]}
+          style={styles.button}
         >
-          <Text style={styles.buttonOutlineText}>Register</Text>
+          <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
         <Text style={styles.errorMessageText}>{errorMessage}</Text>
         <Text style={styles.statusMessageText}>{authLoadStatus}</Text>
@@ -104,9 +104,9 @@ const LoginScreen = () => {
         <Text style={{ color: 'white' }}>or</Text>
         <TouchableOpacity
           onPress={handleGuest}
-          style={[styles.button, styles.buttonOutline]}
+          style={styles.button}
         >
-          <Text style={styles.buttonOutlineText}>Play Without Account</Text>
+          <Text style={styles.buttonText}>Play Without Account</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#9AE19D',
     width: '100%',
+    margin: 5,
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#9AE19D',
+    color: 'white',
     fontWeight: '700',
     fontSize: 16,
   },
