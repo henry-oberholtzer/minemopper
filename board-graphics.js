@@ -14,3 +14,22 @@ export const boardGraphics = {
 	12: require('./assets/graphics/overlay/o_flag.svg'),
 	13: require('./assets/graphics/overlay/o_flag_false.svg'),
 };
+
+export const clockGraphics = {
+	blank: require('./assets/graphics/clock/null.svg'),
+	0: require('./assets/graphics/clock/0.svg'),
+	1: require('./assets/graphics/clock/1.svg'),
+	2: require('./assets/graphics/clock/2.svg'),
+	3: require('./assets/graphics/clock/3.svg'),
+	4: require('./assets/graphics/clock/4.svg'),
+	5: require('./assets/graphics/clock/5.svg'),
+	6: require('./assets/graphics/clock/6.svg'),
+	7: require('./assets/graphics/clock/7.svg'),
+	8: require('./assets/graphics/clock/8.svg'),
+	9: require('./assets/graphics/clock/9.svg'),
+};
+
+export const smileGraphics = {
+	happy: require('./assets/graphics/smile/smile_happy.svg'),
+	sad: require('./assets/graphics/smile/sad_happy.svg'),
+};

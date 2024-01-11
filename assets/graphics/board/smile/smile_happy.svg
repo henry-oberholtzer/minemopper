@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="58"
+   height="58"
+   viewBox="0 0 15.345833 15.345833"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <path
+       style="fill:#807d84;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 15.345833,15.345832 0,15.345833 0.79374996,14.552083 H 14.552083 V 0.79374996 L 15.345833,0 v 13.79771 z"
+       id="path4" />
+    <path
+       style="fill:#fdfdfd;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 0,15.345833 0.79374996,-0.79375 V 0.79374996 H 14.552083 L 15.345833,0 H 0 Z"
+       id="path1" />
+    <rect
+       style="fill:#bfbfbf;fill-opacity:1;stroke:none;stroke-width:0.127;stroke-linecap:round;paint-order:markers fill stroke"
+       id="rect5"
+       width="13.758333"
+       height="13.758333"
+       x="0.79374999"
+       y="0.79374999" />
+    <circle
+       style="fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.127;stroke-linecap:round;stroke-opacity:1;paint-order:markers fill stroke"
+       id="path6"
+       cx="7.6729164"
+       cy="7.6729164"
+       r="6.3499999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 3.0279045,9.3227432 C 5.6011859,14.678725 12.825472,13.037661 12.832292,7.095584"
+       id="path7" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.127;stroke-linecap:round;stroke-opacity:1;paint-order:markers fill stroke"
+       id="path8"
+       cx="4.9741144"
+       cy="6.3499994"
+       r="1.0583333" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.127;stroke-linecap:round;stroke-opacity:1;paint-order:markers fill stroke"
+       id="path9"
+       cx="10.816166"
+       cy="6.3499994"
+       r="0.82549977" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 7.619036,5.8790398 c 1.6132698,0.013923 1.7026792,2.0531661 1.7026792,2.0531661 l -2.3812499,1e-7"
+       id="path10" />
+  </g>
+</svg>
