@@ -16,7 +16,6 @@ export const boardGraphics = {
 };
 
 export const clockGraphics = {
-	blank: require('./assets/graphics/clock/null.svg'),
 	0: require('./assets/graphics/clock/0.svg'),
 	1: require('./assets/graphics/clock/1.svg'),
 	2: require('./assets/graphics/clock/2.svg'),
@@ -27,6 +26,7 @@ export const clockGraphics = {
 	7: require('./assets/graphics/clock/7.svg'),
 	8: require('./assets/graphics/clock/8.svg'),
 	9: require('./assets/graphics/clock/9.svg'),
+	10: require('./assets/graphics/clock/null.svg'),
 };
 
 export const smileGraphics = {
