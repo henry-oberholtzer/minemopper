@@ -13,8 +13,12 @@ export default function App() {
       <Stack.Navigator initialRouteName="LogIn">
         <Stack.Screen name="LogIn" component={LoginScreen} options={{
           title: 'MineMopper',
-          headerShown: false,
+          // headerShown: false,
           headerTitleAlign: 'center',
+          headerLeft: () => null,
+          headerStyle: {
+            backgroundColor: '#E39600',
+          },
         }} />
         <Stack.Screen name="Main" component={MainMenu} options={{
           title: 'MineMopper',
