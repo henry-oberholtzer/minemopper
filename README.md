@@ -1,14 +1,13 @@
 # MineMopper
 
-A playable minecraft based game application that for mobile devices using react-native 
+A playable minesweeper based game application that for mobile devices using react-native 
 
 This project was bootstrapped with [Create Expo App](https://docs.expo.dev/tutorial/create-your-first-app/).
 
-![Figma Component Diagram](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FWPkAtbhns2LfGyGIO7Amr3%2FMain-App%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3Dwa3YySYS0Ic4YJdG-1)
+![Figma Component Diagram](./img/figma.png)
 
-[Figma Component Diagram](https://www.figma.com/file/WPkAtbhns2LfGyGIO7Amr3/Main-App?type=design&node-id=0%3A1&mode=design&t=wa3YySYS0Ic4YJdG-1)
+[Link to Figma](https://www.figma.com/file/WPkAtbhns2LfGyGIO7Amr3/Main-App?type=design&node-id=0%3A1&mode=design&t=wa3YySYS0Ic4YJdG-1)
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FWPkAtbhns2LfGyGIO7Amr3%2FMain-App%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3Dwa3YySYS0Ic4YJdG-1" allowfullscreen></iframe>
 
 #### By Christopher Davila, Aaron Mejia, Henry Oberholtzer, Grant Abe, Teddy Peterschmidt
 
@@ -39,14 +38,24 @@ This project was bootstrapped with [Create Expo App](https://docs.expo.dev/tutor
 
 
 ## Description
-* This is a playable phone application for android, IOS and via browser of the classic Microsoft game minecraft in the style of minemopper.  Register (or if already have an account registered please sign in with your credentials) to access game play. The intention of the game is to uncover all tiles without clicking ona bomb. Click on any of the tiles to begin, a blank space confirms that no surrounding tiles have a bomb, a number will tell you how many of the tiles surrounding said number have incindiary devices attached.  A timer is started on first tile click that player must compete with to complete the level. Difficulty setting may be adjusted for amount of bombs and tiles. Player may save there current game and high score to return at later time.  To view the scoreboard click option in menu. This app was built using Typescript for back-end and react-native library on front end
+* This is a playable phone application for android, IOS and via browser of the classic Microsoft game minesweeper in the style of minemopper.  Register (or if already have an account registered please sign in with your credentials) to access game play. The intention of the game is to uncover all tiles without clicking ona bomb. Click on any of the tiles to begin, a blank space confirms that no surrounding tiles have a bomb, a number will tell you how many of the tiles surrounding said number have incindiary devices attached.  A timer is started on first tile click that player must compete with to complete the level. Difficulty setting may be adjusted for amount of bombs and tiles. Player may save there current game and high score to return at later time.  To view the scoreboard click option in menu. This app was built using Typescript for back-end and react-native library on front end
 
 ## Setup/Installation Requirements
 
 * 1. Clone this repo using `\$ git clone https://github.com/mejia-dev/minemopper`.
 * 2. Open your terminal (e.g., Terminal or GitBash) and navigate to the correct (root)directory using `\$ cd minemopper` and run `\$ npm i` to download all the package dependencies.
 * 3. Go to [firebase](https://console.firebase.google) to create your own free Firebase account in order to obtain your own database if recreating project
-* 4. create a .env file in the root folder and save your private keys and other info into variables that begins with 'EXPO_APP_' and proceeded by whatever name desired. It may be easiest to use the variables already being used in the project, just remove the process.env. when setting up the variables in the .env file.
+* 4. create a .env file in the root folder and save your private keys and other info into variables that begins with 'EXPO_APP_' and proceeded by whatever name desired like so...
+
+```txt
+  EXPO_PUBLIC_FIREBASE_API_KEY={YOUR API KEY}
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN={YOUR AUTH DOMAIN}
+EXPO_PUBLIC_FIREBASE_PROJECT_ID={YOUR PROJECT}
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET={YOUR STORAGE BUCKET}
+EXPO_PUBLIC_FIREBASE_SENDER_ID={YOUR SENDER ID}
+EXPO_PUBLIC_FIREBASE_APP_ID={YOUR APP ID}
+```
+ It may be easiest to use the variables already being used in the project, just remove the process.env. when setting up the variables in the .env file.
 * 5. Next run `\$ npx expo start` to deploy a server. A list of optons to run the server will pop up in the terminal along with a QR scancode that you can scan with your mobile device of choice to run the application on your phone
 
 
