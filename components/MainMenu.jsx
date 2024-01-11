@@ -3,6 +3,8 @@ import { View, StyleSheet, Text, Image, Modal } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Button from './Button';
 import LeaderBoard from './LeaderBoard';
+import { signOut } from "firebase/auth";
+import { auth } from './auth/Firebase';
 
 const MainMenu = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -25,6 +27,17 @@ const MainMenu = ({ navigation }) => {
         modalOff();
     };
 
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            navigation.navigate("LogIn")
+            console.log("Signed out successfully")
+        } catch (error) {
+            console.log("Error: ", error.message)
+        };
+    }
+
+
     let currentView = (
         <>
             <View style={styles.container}>
@@ -32,7 +45,7 @@ const MainMenu = ({ navigation }) => {
                     <Button label="Start Game" func={() => modalOn()} />
                     <Button label="Resume Game" />
                     <Button label="View Leaderboard" func={() => setLeaderboardVisible(true)} />
-                    <Button label="Sign out" />
+                    <Button label="Sign out" func={() => handleSignOut()} />
                     <Modal visible={modalVisible}
                         onRequestClose={() => setModalVisible(false)}
                         animationType="slide">
